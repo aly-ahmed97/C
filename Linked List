@@ -53,6 +53,18 @@ void addToMid(struct node *head, int d , int pos)
         temp = temp -> link ; 
     temp -> link = ptr ; 
 }
+struct node *deletFirst(struct node *head)
+{
+    struct node *temp = head ; 
+    head = head -> link ;
+    free(temp);
+    return head ; 
+}
+void deletLast(struct node *head)
+{
+    //
+    
+}
 int main() {
     
     struct node *head = malloc(sizeof(struct node));
@@ -76,6 +88,13 @@ int main() {
     number = countNode(head);
     printf("%d\n",number);
     printValues(head);
+    head = deletFirst(head);
+    number = countNode(head);
+    printf("%d\n",number);
+    printValues(head);
+    deletLast(head);
+    number = countNode(head);
+    printf("%d\n",number);
+    printValues(head);
     return 0;
-    
 }
