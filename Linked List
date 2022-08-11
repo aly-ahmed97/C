@@ -1,0 +1,81 @@
+// trying to make a great linked list
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *link ;
+};
+struct node *addToEnd(struct node *ptr, int d)
+{
+    struct node *temp = malloc(sizeof(struct node));
+    temp  -> data = d ; 
+    temp  -> link = NULL ; 
+    ptr -> link  = temp ; 
+    return temp ; 
+}
+int countNode(struct node *head)
+{
+    int counter = 0 ;
+    struct node *ptr = head;
+    while(ptr != NULL)
+    {
+        counter ++ ; 
+        ptr = ptr -> link;  
+    }
+    return counter ; 
+}
+void printValues(struct node *head)
+{
+    struct node *ptr = head ; 
+    while(ptr != NULL)
+    {
+        printf("%d\n",ptr->data);
+        ptr = ptr->link ;
+    }
+}
+struct node *addToFirst(struct node *head,int d)
+{
+    struct node *ptr = malloc(sizeof(struct node));
+    ptr -> data  = d;
+    ptr -> link = head ; 
+    return ptr ; 
+}
+void addToMid(struct node *head, int d , int pos)
+{
+    struct node *ptr = malloc(sizeof(struct node));
+    ptr-> data = d ;
+    struct node *temp = head ; 
+    for(int i = 0 ; i < pos ; i++)
+        temp = temp -> link ; 
+    ptr ->link = temp;
+    temp = head ; 
+    for(int i = 0 ; i < (pos-1) ; i++)
+        temp = temp -> link ; 
+    temp -> link = ptr ; 
+}
+int main() {
+    
+    struct node *head = malloc(sizeof(struct node));
+    head -> data = 100 ;
+    head -> link = NULL ; 
+    struct node *ptr = head ;
+    ptr = addToEnd(ptr, 200);
+    ptr = addToEnd(ptr, 300);
+    ptr = addToEnd(ptr, 400);
+    ptr = addToEnd(ptr, 500);
+    ptr = addToEnd(ptr, 600);
+    int number = countNode(head);
+    printf("%d\n",number);
+    printValues(head);
+    head = addToFirst(head,50);
+    head = addToFirst(head,10);
+    number = countNode(head);
+    printf("%d\n",number);
+    printValues(head);
+    addToMid(head,80,2);
+    number = countNode(head);
+    printf("%d\n",number);
+    printValues(head);
+    return 0;
+    
+}
