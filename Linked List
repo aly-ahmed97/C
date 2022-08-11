@@ -62,8 +62,16 @@ struct node *deletFirst(struct node *head)
 }
 void deletLast(struct node *head)
 {
-    //
+    struct node *temp = head ;
+    struct node *temp2 = head ;
+    while(temp-> link != NULL)
+    {
+        temp2 = temp ; 
+        temp = temp -> link ;
+    }
     
+    free(temp);
+    temp2 -> link = NULL;
 }
 int main() {
     
@@ -73,9 +81,6 @@ int main() {
     struct node *ptr = head ;
     ptr = addToEnd(ptr, 200);
     ptr = addToEnd(ptr, 300);
-    ptr = addToEnd(ptr, 400);
-    ptr = addToEnd(ptr, 500);
-    ptr = addToEnd(ptr, 600);
     int number = countNode(head);
     printf("%d\n",number);
     printValues(head);
