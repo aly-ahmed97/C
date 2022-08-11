@@ -69,7 +69,6 @@ void deletLast(struct node *head)
         temp2 = temp ; 
         temp = temp -> link ;
     }
-    
     free(temp);
     temp2 -> link = NULL;
 }
